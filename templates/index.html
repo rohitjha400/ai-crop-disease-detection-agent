@@ -11,58 +11,185 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Marked.js for Markdown rendering -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+    @keyframes pulse-glow {
+      0% { box-shadow: 0 0 0px #4ade80; }
+      50% { box-shadow: 0 0 15px #4ade80; }
+      100% { box-shadow: 0 0 0px #4ade80; }
+    }
+
+    .glow-logo {
+      animation: pulse-glow 2s infinite;
+    }
+
+    .nav-link:hover {
+      transform: scale(1.1);
+      transition: all 0.3s ease-in-out;
+    }
+  </style>
+  <style>
+  @keyframes marquee-right {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-marquee-right {
+    animation: marquee-right 10s linear infinite;
+  }
+</style>
+
 </head>
 <body class="bg-gradient-to-br from-green-100 to-blue-100 min-h-screen flex flex-col font-inter">
-    <!-- Navigation Bar -->
-    <nav class="bg-green-700 p-4 shadow-lg">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="/" class="text-white text-2xl font-bold flex items-center">
-                <i class="fas fa-leaf mr-2"></i> AI Crop Doctor
-            </a>
-            <div class="space-x-4">
-                <a href="/" class="text-white hover:text-green-200 transition-colors duration-200 font-medium">Home</a>
-                <a href="/history_page" target="_blank" class="text-white hover:text-green-200 transition-colors duration-200 font-medium">History</a>
-                <a href="/user_guide" target="_blank" class="text-white hover:text-green-200 transition-colors duration-200 font-medium">User Guide</a>
-                <a href="/tools" target="_blank" class="text-white hover:text-green-200 transition-colors duration-200 font-medium">Tools</a>
-                <a href="#" class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition-colors duration-200 font-semibold">
-                    <i class="fas fa-phone-alt mr-1"></i> Emergency
-                </a>
-            </div>
-        </div>
-    </nav>
+<!-- Frame 1 -->
+<div id="frame1" class="fixed inset-0 flex flex-col items-center justify-center bg-green-200 text-center text-3xl font-bold z-50">
+  <h1>🌿 Welcome to Crop Cure!</h1>
+  <p class="text-xl mt-2 italic text-green-800">"A healthy crop is a healthy future."</p>
+</div>
 
-    <main class="flex-grow flex items-center justify-center p-4">
-        <!-- Main content container - now allows vertical stacking and wider max-width -->
-        <div class="bg-white p-8 rounded-2xl shadow-xl max-w-6xl w-full text-center border-t-4 border-green-500 flex flex-col gap-8">
-            
-            <!-- Left Section: Introduction & Sample Images - now always full width -->
-            <div id="intro-sample-section" class="w-full text-left">
-                <h2 class="text-3xl font-bold text-green-700 mb-4">Welcome to AI Crop Doctor</h2>
-                <p class="text-gray-700 mb-4 leading-relaxed">
-                    Your intelligent assistant for identifying plant diseases and getting actionable treatment recommendations. Simply upload an image of your affected plant, and our AI will provide an instant diagnosis.
-                </p>
-                <p class="text-gray-600 mb-6">
-                    We leverage advanced machine learning models and the power of generative AI to give you comprehensive reports, including organic and chemical action plans, long-term prevention strategies, and local agricultural support information.
-                </p>
+<!-- Frame 2 -->
+<div id="frame2" class="fixed inset-0 hidden flex flex-col items-center justify-center bg-green-100 text-center text-3xl font-bold z-40">
+  <h1>🌱 AI Crop Doctor</h1>
+  <p class="text-xl mt-2 italic text-green-700">"Detect early, protect fully."</p>
+</div>
 
-                <div id="upload-section" class="mb-8">
-                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Upload Plant Image</h2>
-                    <!-- Adjusted padding and SVG size for smaller height -->
-                    <div id="drop-area" class="border-2 border-dashed border-gray-300 rounded-xl p-4 mb-4 flex flex-col items-center justify-center bg-gray-50 hover:border-green-400 transition-all cursor-pointer">
-                        <svg class="w-12 h-12 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 25a4 4 0 01-.88-7.903A5 5 0 0115.9 6L25 6a5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                        <p class="text-base text-gray-600">Drag & Drop your image here, or <span class="text-green-600 font-medium">click to browse</span></p>
-                        <input type="file" id="image-input" accept="image/*" class="hidden">
-                    </div>
-                    <!-- Adjusted height for initial image preview -->
-                    <div id="image-preview-container-initial" class="hidden mb-4">
-                        <img id="image-preview-initial" class="max-w-full h-32 object-contain mx-auto rounded-lg shadow-md border border-gray-200" alt="Image Preview">
-                        <p id="image-name-initial" class="text-gray-600 mt-2 text-sm"></p>
-                    </div>
-                    <button id="predict-button" class="bg-green-600 text-white px-8 py-3 rounded-xl hover:bg-green-700 transition-colors duration-300 shadow-lg text-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed">
-                        Analyze Image
-                    </button>
-                </div>
+<!-- Main Content Wrapper -->
+<div id="mainContent" class="hidden">
+  <!-- 🟩 Everything else like navbar, hero section, footer goes inside here -->
 
+    
+    <!-- 🌱 Navigation Bar -->
+  <nav class="bg-gradient-to-r from-green-700 via-green-600 to-green-800 p-4 shadow-lg z-50">
+    <div class="container mx-auto flex justify-between items-center">
+      
+      <!-- 🌿 Logo & Brand -->
+      <a href="/" class="text-white text-base font-bold flex items-center space-x-3">
+  <img
+    src="https://media.istockphoto.com/id/1496224767/vector/vector-cute-farmer-robot-cartoon-illustration-isolated.jpg?s=1024x1024&w=is&k=20&c=Q96xOCkdNNc8-NwUVzO1Ka0CSxIfKxv7z5rKch2rAuo="
+    alt="AI Crop Doctor Logo"
+    class="w-10 h-10 rounded-full shadow-lg border-2 border-white hover:scale-105 transition-transform duration-300"
+  />
+  <span class="tracking-wide hover:tracking-widest transition-all duration-300">AI Crop Doctor</span>
+</a>
+
+
+      <!-- 📂 Navigation Links -->
+      <div class="space-x-4 hidden md:flex">
+        <a href="/" class="text-white nav-link font-medium hover:text-green-200 transition-all duration-200">Home</a>
+        <a href="/history_page" target="_blank" class="text-white nav-link font-medium hover:text-green-200 transition-all duration-200">History</a>
+        <a href="/user_guide" target="_blank" class="text-white nav-link font-medium hover:text-green-200 transition-all duration-200">User Guide</a>
+        <a href="/tools" target="_blank" class="text-white nav-link font-medium hover:text-green-200 transition-all duration-200">Tools</a>
+        <a href="#" class="bg-red-500 nav-link text-white px-4 py-2 rounded-full hover:bg-red-600 transition-colors duration-200 font-semibold shadow-md">
+          <i class="fas fa-phone-alt mr-1"></i> Emergency
+        </a>
+      </div>
+      
+      <!-- 📱 Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="menuToggle" class="text-white text-2xl focus:outline-none">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- 📱 Mobile Dropdown -->
+    <div id="mobileMenu" class="md:hidden mt-2 space-y-2 px-4 hidden">
+      <a href="/" class="block text-white font-medium hover:text-green-200">Home</a>
+      <a href="/history_page" target="_blank" class="block text-white font-medium hover:text-green-200">History</a>
+      <a href="/user_guide" target="_blank" class="block text-white font-medium hover:text-green-200">User Guide</a>
+      <a href="/tools" target="_blank" class="block text-white font-medium hover:text-green-200">Tools</a>
+      <a href="#" class="block bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 font-semibold text-center">
+        <i class="fas fa-phone-alt mr-1"></i> Emergency
+      </a>
+    </div>
+  </nav>
+
+  
+  
+
+  <!-- JS: Toggle mobile menu -->
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
+<!-- frame chnages -->
+ 
+
+<!-- hero section -->
+
+    <main class="flex-grow flex items-center justify-center p-4 bg-cover bg-center bg-no-repeat min-h-screen"
+      style="background-image: url('https://cdn.pixabay.com/photo/2021/06/28/18/36/cereals-6372410_1280.jpg');">
+  
+  <!-- Main content container -->
+  <div class="bg-white bg-opacity-10 backdrop-blur-md p-8 rounded-2xl shadow-xl max-w-6xl w-full text-center border-t-4 border-green-500 flex flex-col gap-8">
+    
+    <!-- Left Section: Introduction & Sample Images -->
+    <div id="intro-sample-section" class="w-full text-left">
+        <!-- Image with smooth hover animation -->
+
+      <div class="text-center max-w-3xl mx-auto px-4 mt-10 space-y-4">
+
+  <div class="max-w-xl mx-auto mt-10 p-6 bg-green-100 border-4 border-green-800 rounded-xl shadow-lg transform transition duration-500 hover:scale-105">
+  <div class="overflow-hidden whitespace-nowrap">
+  <h2 class="text-4xl font-extrabold text-green-800 inline-block ">
+    Welcome to <span class="text-green-900 underline">AI Crop Doctor</span>
+  </h2>
+</div>
+
+</div>
+
+
+  <div class="max-w-2xl mx-auto mt-6 p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
+  <p class="text-gray-800 text-lg leading-relaxed tracking-wide">
+    Diagnose <span class="font-semibold text-green-600">plant diseases</span> instantly with smart <span class="font-semibold text-gray-900">AI</span> — just upload a photo and let technology assist your next step.
+  </p>
+</div>
+
+
+  <p class="text-gray-900 text-base italic leading-relaxed">
+  Powered by <span class="font-bold text-gray-900">Machine learning</span> and 
+  <span class="font-bold text-gray-900">Generative AI</span>
+</p>
+
+
+</div>
+            <div id="upload-section" class="max-w-xl mx-auto mb-10 p-6 bg-white border border-gray-200 rounded-2xl shadow-md">
+  <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+    Upload Plant Image
+  </h2>
+
+  <div id="drop-area" class="border-2 border-dashed border-gray-300 rounded-xl p-6 mb-6 bg-gray-50 hover:border-green-400 hover:bg-green-50 transition-all duration-300 cursor-pointer flex flex-col items-center">
+    <svg class="w-10 h-10 text-green-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 25a4 4 0 01-.88-7.903A5 5 0 0115.9 6L25 6a5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+    </svg>
+    <p class="text-gray-600 text-center text-base">
+      Drag & Drop your image here, or 
+      <span class="text-green-600 font-semibold underline">click to browse</span>
+    </p>
+    <input type="file" id="image-input" accept="image/*" class="hidden">
+  </div>
+
+  <div id="image-preview-container-initial" class="hidden mb-4 text-center">
+    <img id="image-preview-initial" class="max-w-full h-36 object-contain mx-auto rounded-lg shadow-sm border border-gray-200" alt="Image Preview">
+    <p id="image-name-initial" class="text-gray-500 mt-2 text-sm italic"></p>
+  </div>
+
+  <div class="flex justify-center">
+    <button id="predict-button" class="bg-green-600 text-white px-6 py-2.5 rounded-lg hover:bg-green-700 transition duration-300 text-base font-medium disabled:opacity-50 disabled:cursor-not-allowed shadow-md">
+      Analyze Image
+    </button>
+  </div>
+</div>
+
+                
+                
                 <h3 class="text-2xl font-semibold text-gray-800 mb-4">Try with Sample Images:</h3>
                 <!--  grid for rows with 5 images each -->
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
@@ -441,7 +568,39 @@
             </div>
         </div>
     </main>
+    <footer class="bg-green-700 text-white text-sm py-4">
+  <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-2">
+     <!-- Project Info -->
+    <!-- <div>
+      <span class="font-semibold">AI Crop Doctor</span> — Built by 
+      <span class="underline">Anshika Singh</span> & 
+      <span class="underline">Ayush Sinha</span>
+    </div> -->
+ <!-- Tagline -->
+    <div class="italic text-green-100">
+      Empowering farmers with AI 🌿
+    </div>
+  </div>
+<!-- Footer Bottom -->
+  <div class="text-center text-green-100 text-xs mt-2">
+    © 2025 AI Crop Doctor. All rights reserved.
+  </div>
+</footer>
+ <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script>
+  window.onload = function () {
+    // Show Frame 1 for 2s
+    setTimeout(() => {
+      document.getElementById("frame1").classList.add("hidden");
+      document.getElementById("frame2").classList.remove("hidden");
 
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+      // Show Frame 2 for 2s, then Main
+      setTimeout(() => {
+        document.getElementById("frame2").classList.add("hidden");
+        document.getElementById("mainContent").classList.remove("hidden");
+      }, 2000); // Frame 2 duration
+    }, 2000); // Frame 1 duration
+  };
+</script>
 </body>
 </html>

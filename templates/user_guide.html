@@ -11,25 +11,64 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="bg-gradient-to-br from-green-100 to-blue-100 min-h-screen flex flex-col font-inter">
-    <!-- Navigation Bar -->
-    <nav class="bg-green-700 p-4 shadow-lg">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="/" class="text-white text-2xl font-bold flex items-center">
-                <i class="fas fa-leaf mr-2"></i> AI Crop Doctor
-            </a>
-            <div class="space-x-4">
-                <a href="/" target="_blank" class="text-white hover:text-green-200 transition-colors duration-200 font-medium">Home</a>
-                <a href="/history_page" target="_blank" class="text-white hover:text-green-200 transition-colors duration-200 font-medium">History</a>
-                <a href="/user_guide" class="text-white hover:text-green-200 transition-colors duration-200 font-medium">User Guide</a>
-                <a href="/tools" target="_blank" class="text-white hover:text-green-200 transition-colors duration-200 font-medium">Tools</a>
-                <a href="#" class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition-colors duration-200 font-semibold">
-                    <i class="fas fa-phone-alt mr-1"></i> Emergency
-                </a>
-            </div>
-        </div>
-    </nav>
+        <!-- Navigation Bar -->
+        <nav class="bg-gradient-to-r from-green-700 via-green-600 to-green-800 p-4 shadow-lg z-50">
+    <div class="container mx-auto flex justify-between items-center">
+      
+      <!-- 🌿 Logo & Brand -->
+      <a href="/" class="text-white text-2xl font-bold flex items-center space-x-3">
+  <img
+    src="https://media.istockphoto.com/id/1496224767/vector/vector-cute-farmer-robot-cartoon-illustration-isolated.jpg?s=1024x1024&w=is&k=20&c=Q96xOCkdNNc8-NwUVzO1Ka0CSxIfKxv7z5rKch2rAuo="
+    alt="AI Crop Doctor Logo"
+    class="w-10 h-10 rounded-full shadow-lg border-2 border-white hover:scale-105 transition-transform duration-300"
+  />
+  <span class="tracking-wide hover:tracking-widest transition-all duration-300">AI Crop Doctor</span>
+</a>
 
-    <main class="flex-grow flex items-center justify-center p-4">
+<!-- 📂 Navigation Links -->
+      <div class="space-x-4 hidden md:flex">
+        <a href="/" class="text-white nav-link font-medium hover:text-green-200 transition-all duration-200">Home</a>
+        <a href="/history_page" target="_blank" class="text-white nav-link font-medium hover:text-green-200 transition-all duration-200">History</a>
+        <a href="/user_guide" target="_blank" class="text-white nav-link font-medium hover:text-green-200 transition-all duration-200">User Guide</a>
+        <a href="/tools" target="_blank" class="text-white nav-link font-medium hover:text-green-200 transition-all duration-200">Tools</a>
+        <a href="#" class="bg-red-500 nav-link text-white px-4 py-2 rounded-full hover:bg-red-600 transition-colors duration-200 font-semibold shadow-md">
+          <i class="fas fa-phone-alt mr-1"></i> Emergency
+        </a>
+      </div>
+      
+      <!-- 📱 Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="menuToggle" class="text-white text-2xl focus:outline-none">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- 📱 Mobile Dropdown -->
+    <div id="mobileMenu" class="md:hidden mt-2 space-y-2 px-4 hidden">
+      <a href="/" class="block text-white font-medium hover:text-green-200">Home</a>
+      <a href="/history_page" target="_blank" class="block text-white font-medium hover:text-green-200">History</a>
+      <a href="/user_guide" target="_blank" class="block text-white font-medium hover:text-green-200">User Guide</a>
+      <a href="/tools" target="_blank" class="block text-white font-medium hover:text-green-200">Tools</a>
+      <a href="#" class="block bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 font-semibold text-center">
+        <i class="fas fa-phone-alt mr-1"></i> Emergency
+      </a>
+    </div>
+  </nav>
+
+  <!-- JS: Toggle mobile menu -->
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
+<!-- hero section -->
+
+    <main class="flex-grow flex items-center justify-center p-4 bg-cover bg-center" style="background-image: url('https://img.freepik.com/premium-photo/field-green-wheat-with-sun-setting-background_662214-190979.jpg');">
+
         <div class="bg-white p-8 rounded-2xl shadow-xl max-w-4xl w-full border-t-4 border-green-500">
             <div class="card shadow">
                 <div class="card-header bg-green-600 text-white p-4 rounded-t-xl">
@@ -408,6 +447,21 @@
             </div>
         </div>
     </main>
+<script>
+  function showGuideSection(sectionId) {
+    const sections = document.querySelectorAll('.guide-section');
+    const tabs = document.querySelectorAll('.guide-navigation-tabs button');
+
+    sections.forEach(section => section.classList.add('hidden'));
+    tabs.forEach(tab => tab.classList.remove('active', 'bg-green-500', 'text-white'));
+    tabs.forEach(tab => tab.setAttribute('aria-selected', 'false'));
+
+    document.getElementById(`guide-${sectionId}`).classList.remove('hidden');
+    const activeTab = document.getElementById(`tab-${sectionId}`);
+    activeTab.classList.add('active', 'bg-green-500', 'text-white');
+    activeTab.setAttribute('aria-selected', 'true');
+  }
+</script>
 
     <script src="{{ url_for('static', filename='js/user_guide.js') }}"></script>
 </body>
