@@ -103,5 +103,13 @@ Open a Pull Request
 
 This project is MIT licensed.
 
+## 🙏 Credits & Acknowledgements
+
+This project is based on the open-source repository **AI Crop Disease Detection Agent** created by the original author.
+
+I (Rohit Kumar Jha) have forked the project and added improvements, modifications, and enhancements.
+
+This project continues to follow the original MIT License.
+
 <p align="center"> <img src="https://capsule-render.vercel.app/api?type=waving&color=0:22c55e,100:16a34a&height=100&section=footer" alt="Wave Animation" /> </p> ```
 
